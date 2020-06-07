@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>4 Ways Of Ajax</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" charset="utf-8"></script>
+
+  <h1>Ron Swanson Quote Generator</h1>
+  <p>(4 ways of writing AJAX requests)</p>
+  <section class="app">
+    <div class="container">
+
+      <button id="btn-xhr">XHR</button>
+      <button id="btn-fetch">Fetch</button>
+      <button id="btn-jquery">jQuery</button>
+      <button id="btn-axios">Axios</button>
+    </div>
+  </section>
+
+  <p id="quote">Quote goes here...</p>
+
+  <section class="codes">
+    <button id="btn-show-code">show code</button>
+    <div class="container code-block hide ">
+      <div class="code">
+        <h3 class="code-block-header">XHR</h3>
+        <pre>
+xhrBtn.addEventListener('click', function(){
+  var XHR = new XMLHttpRequest();
+  XHR.onreadystatechange = function(){
+    if(XHR.readyState == 4 && XHR.status == 200){
+      var data = JSON.parse(XHR.responseText);
+      quote.textContent = data;
+    }
+  }
+  XHR.open("GET", url, true);
+  XHR.send();
+});
+        </pre>
+      </div>
+      <div class="code">
+        <h3 class="code-block-header">Fetch</h3>
+        <pre>
+fetchBtn.addEventListener('click', function(){
+  fetch(url)
+  .then(function(res){
+    return res.json();
+  })
+  .then(function(data){
+    quote.textContent = data;
+  })
+  .catch(function(){
+    console.log("Oh Oh... Erroor");
+  })
+});</pre>
+      </div>
+      <div class="code">
+        <h3 class="code-block-header">jQuery</h3>
+        <pre>
+$('#jquery').click(function(){
+  $.get(url)
+  .done(function(res){
+    $ ('#quote').text(res);
+  })
+  .fail(function(){
+    console.log("oh nee... error!");
+  })
+});
+            </pre>
+      </div>
+      <div class="code">
+        <h3 class="code-block-header">axios</h3>
+        <pre>
+axiosBtn.addEventListener('click', function(){
+  axios.get(url)
+  .then(function(res){
+    quote.textContent = res.data;
+  })
+  .catch(function(res){
+    console.log("Error... :(")
+  })
+});
+</pre>
+      </div>
+    </div>
+  </section>
+  <script src="./script.js" charset="utf-8"></script>
+</body>
+
+</html>
