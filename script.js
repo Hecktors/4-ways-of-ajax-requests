@@ -3,7 +3,7 @@ var xhrBtn = document.getElementById("btn-xhr");
 var fetchBtn = document.getElementById("btn-fetch");
 var axiosBtn = document.getElementById("btn-axios");
 var quote = document.getElementById("quote");
-var showChodeBtn = document.getElementById("btn-show-code");
+var showCodeBtn = document.getElementById("btn-show-code");
 var codeBlock = document.querySelector(".code-block");
 
 xhrBtn.addEventListener("click", function () {
@@ -52,7 +52,9 @@ axiosBtn.addEventListener("click", function () {
     });
 });
 
-showChodeBtn.addEventListener("click", function () {
+showCodeBtn.addEventListener("click", function () {
   codeBlock.classList.toggle("hide");
+  console.log(this.innerHTML)
+  this.innerHTML = this.innerHTML === "show code" ? "hide code" : "show code"
 });
 
